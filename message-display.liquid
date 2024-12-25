@@ -1,0 +1,168 @@
+<style>
+.join-section {
+  background-color: {{section.settings.main_background_color}}; /* Yellow Background */
+  color: #000; /* Black Text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.join-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.join-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Button Styling */
+.join-button {
+  background-color: #000; /* Black Button */
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  border: 2px solid #000;
+}
+
+.join-button span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.join-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.join-button:hover span {
+  transform: translateX(5px); /* Arrow Movement */
+}
+
+
+@media (max-width: 1024px) {
+  .join-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+ .join-content h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Media Query for Mobile (below 768px) */
+@media (max-width: 768px) {
+  .join-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+ .join-content h2 {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  .join-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+  
+
+</style>
+
+<section class="join-section">
+    <div class="join-content">
+      <h2>{{ section.settings.main_head_text}}</h2>
+      <a href={{ section.settings.main_BTN_url}} class="join-button">{{ section.settings.main_BTN_text }}<span>&rarr;</span></a>
+    </div>
+  </section>
+
+{% schema %}
+{
+  "name": "Sale Message Display",
+  "tag": "section",
+  "settings": [
+             {
+      "type": "text",
+      "id": "main_head_text",
+      "label": "Write the Main Heading Here"
+    },
+    {
+       "type": "text",
+      "id": "main_BTN_text",
+      "label": "Write the Button Text here"
+    },
+
+      {
+       "type": "url",
+      "id": "main_BTN_url",
+      "label": "Button URL here"
+    },
+
+         {
+       "type": "color",
+      "id": "main_background_color",
+      "label": "Background color"
+    }
+    
+],
+
+"blocks": [
+    {
+      "name": "Process Icons",
+      "type": "focus_pointer",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imgtext",
+          "label": "Please select the image"
+        },
+        {
+          "type": "number",
+          "id": "numeric_input",
+          "label": "Please enter a number",
+          "default": 0
+        },
+        {
+          "type": "video",
+          "id": "video_input",
+          "label": "Please select a video"
+        },
+
+          {
+      "type": "text",
+      "id": "main_head_text",
+      "label": "Write the Main Heading Here"
+    },
+
+         {
+      "type": "richtext",
+      "id": "main_subhead_text",
+      "label": "Write the subheading  here"
+    }
+
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sale Message Display"
+    }
+  ]
+}
+{% endschema %}

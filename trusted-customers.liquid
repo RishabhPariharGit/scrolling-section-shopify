@@ -1,0 +1,62 @@
+<style>
+
+
+.main-year-section {
+  text-align: center;
+  padding: 10px 20px 50px 20px; 
+}
+
+.main-year-name {
+  font-size: 10rem;
+  font-weight: bold;
+  color: black; /* Adjust color to match the design */
+  margin: 0;
+}
+
+.main-title-wrapper {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.main-description-wrapper {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #333;
+}
+
+</style>
+
+    <div class="main-year-section">
+        <h1 class="main-year-name">2000+</h1>
+        <h2 class="main-title-wrapper">Happy customers</h2>
+        <p class="main-description-wrapper">
+          Since our inception, we've been dedicated to delivering exceptional products and services that meet the highest standards of quality and satisfaction. With over 2,000 happy customers, we’re proud to be a trusted choice in the industry.
+        </p>
+      </div>      
+
+
+
+
+{% schema %}
+ {
+  "name": "Happy Customers",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_head_text",
+      "label": "Write the Main Heading Here"
+    }
+],
+
+  "presets": [
+    {
+      "name": "Happy Customers"
+    }
+  ]
+}
+{% endschema %}
