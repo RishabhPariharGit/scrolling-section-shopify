@@ -1,0 +1,276 @@
+<style>
+        .main-lookbook-wrapper {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .main-lookbook-img-wrapper {
+            width: 50%;
+            height: 80vh;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+
+        .main-lookbook-img {
+            position: relative; /* Set relative positioning */
+        }
+
+        .main-lookbook-img img {
+            width: 100%; 
+            max-width: 700px; 
+            height: auto; 
+        }
+
+        .focus-point-one,
+        .focus-point-two,
+        .focus-point-three,
+        .focus-point-four,
+        .focus-point-five {
+            position: absolute;
+            border-radius: 50%;
+            width: 25px;
+            cursor: pointer;
+            height: 25px;
+            font-weight: 900;
+            background-color: rgb(255, 255, 255);
+            border: 2px solid rgb(224, 224, 224);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+
+
+{% for block in section.blocks %}
+        .focus-point-one.dot-point-{{forloop.index}} {
+            top: {{ block.settings.top_margin | plus: 0}}%; /* Adjust to your preference */
+            left: {{block.settings.left_margin | plus: 0}}%; /* Adjust to your preference */
+        }
+{% endfor %}  
+
+
+        .focus-point-one:hover,
+        .focus-point-two:hover,
+        .focus-point-three:hover,
+        .focus-point-four:hover,
+        .focus-point-five:hover {
+            background-color: rgb(187, 186, 186);
+            border: 2px solid white;
+            width: 35px;
+            height: 35px;
+            z-index: 20; 
+            color: white; 
+          
+        }
+
+        .focus-point-one span,
+        .focus-point-two span,
+        .focus-point-three span,
+        .focus-point-four span,
+        .focus-point-five span {
+            display: none; 
+            font-size: 14px; 
+        }
+
+        .focus-point-one:hover span,
+        .focus-point-two:hover span,
+        .focus-point-three:hover span,
+        .focus-point-four:hover span,
+        .focus-point-five:hover span {
+            display: block; 
+        }
+
+
+        .main-description-main-wrapper{
+            width:50%;
+            height: 100vh;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .main-description-secondary-wrapper{
+            width: 500px;
+            height: 500px;
+            background-color: {{section.settings.color-picker-main-bg}};
+            color: white;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #description-text{
+            text-align: center;
+            padding: 5px 50px;
+        }
+
+  #description-text p, h1, h2, h3, h4, h5, h6{
+    color:{{section.settings.color-picker-main}};
+  }
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+
+            .main-lookbook-wrapper {
+                height: auto; 
+                display: flex;
+                flex-direction: column;
+            }
+
+            .main-description-main-wrapper{
+            width:100%;
+            height: auto;
+            background-color: rgb(255, 255, 255);
+        }
+
+            .main-lookbook-img-wrapper {
+                width: 100%; /* Full width for smaller screens */
+                height: auto; /* Adjust height automatically */
+            }
+
+            .main-lookbook-img img {
+                max-width: 100%; /* Full width for smaller screens */
+                height: auto; /* Adjust height automatically */
+            }
+
+            .focus-point-one,
+            .focus-point-two,
+            .focus-point-three,
+            .focus-point-four,
+            .focus-point-five {
+                width: 15px; /* Smaller width for smaller screens */
+                height: 15px; /* Smaller height for smaller screens */
+            }
+
+            .focus-point-one:hover,
+            .focus-point-two:hover,
+            .focus-point-three:hover,
+            .focus-point-four:hover,
+            .focus-point-five:hover {
+                width: 22px; /* Adjusted scale for smaller screens */
+                height: 22px; /* Adjusted scale for smaller screens */
+                border:1px solid white;
+                font-weight: 600;
+            }
+
+            .focus-point-one span,
+            .focus-point-two span,
+            .focus-point-three span,
+            .focus-point-four span,
+            .focus-point-five span {
+                font-size: 10px; /* Adjust font size for smaller screens */
+            }
+        }
+</style>
+
+    <div class="main-lookbook-wrapper">
+        <div class="main-lookbook-img-wrapper">
+            <div class="main-lookbook-img">
+                <img src="https://cdn.shopify.com/s/files/1/0729/3789/8207/files/India_region_blue_1_Converted_-01_1.png?v=1735802506" />
+                {% for block in section.blocks %}
+                <div class="focus-point-one dot-point-{{ forloop.index }}" onclick="updateDescription('<p>{{ block.settings.source-state-name }}</p><p>{{ block.settings.source-state-desc }}</p>')">+</div>
+                  {% endfor %}
+            </div>
+        </div>
+        <div class="main-description-main-wrapper">
+            <div class="main-description-secondary-wrapper">
+                <div id="description-text"><p>{{ section.settings.main_head_text }}</p>
+                  <p>{{ section.settings.main_description_text }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Function to update the text content dynamically
+        function updateDescription(htmlContent) {
+            const descriptionElement = document.getElementById('description-text');
+            descriptionElement.innerHTML = htmlContent; // Use innerHTML to insert HTML
+        }
+    </script>
+
+{% schema %}
+ {
+  "name": "Our Sourcing",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "main_head_text",
+      "label": "Write the main heading here"
+    },
+      {
+      "type": "richtext",
+      "id": "main_description_text",
+      "label": "Write the main description here"
+    },
+    {
+      "type": "color",
+      "id": "color-picker-main",
+      "label": "text color"
+    },
+     {
+      "type": "color",
+      "id": "color-picker-main-bg",
+      "label": "background color"
+    }
+],
+
+  "blocks": [
+    {
+     "name": "states",
+      "type": "focus_pointer",
+      "settings": [      
+
+ {
+      "type": "richtext",
+      "id": "source-state-name",
+      "label": "Write the main state here"
+    },
+
+         {
+      "type": "richtext",
+      "id": "source-state-desc",
+      "label": "Write the state description here"
+    },
+        
+    {
+            "type": "range",
+            "id": "left_margin",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "label": "Left Spacing",
+            "default": 10
+          },
+
+  {
+            "type": "range",
+            "id": "top_margin",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "label": "Top Spacing",
+            "default": 10
+          }
+      ]
+    }
+  ],
+   
+  "presets": [
+    {
+      "name": "Our Sourcing"
+    }
+  ]
+}
+{% endschema %}
