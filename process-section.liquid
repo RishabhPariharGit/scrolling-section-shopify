@@ -1,0 +1,360 @@
+
+<style>
+    .swiper-container {
+        width: 100%; /* Ensure it fits exactly within the viewport */
+        height: 75vh;
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .primary-content-wrapper {
+        width: 80%;
+        height: 60vh;
+        padding: 5px;
+        margin: auto;
+        background-color: #ffffff;
+        display: flex;
+
+      \]./,l;[l;[]]
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 35px; /* Adjust width */
+        height: 35px; /* Adjust height */
+        font-size: 14px; /* Adjust icon size */
+        color: black; /* Icon color */
+        /* background-color: rgba(255, 255, 255, 0.8);  */
+        /* Button background */
+        border-radius: 50%; /* Make buttons circular */
+        display: flex;
+        border: 2px solid #282828;
+        justify-content: center;
+        align-items: center;
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  */
+        /* Optional shadow */
+        overflow: hidden; /* Prevent content overflow */
+        /* position: relative; */
+    }
+
+    /* Ensure SVG icons fit properly */
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 12px;
+        font-weight: 700;
+        /* Adjust the size of the SVG icon */
+        /* width: 100%;
+        height: 100%; 
+        display: inline-block;
+        overflow: hidden;  */
+    }
+
+    /* Hover effect */
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        transform: scale(1.1); /* Slight zoom effect */
+        /* background-color: lightblue; */
+        /* Change background color on hover */
+    }
+
+    .primary-video-wrapper {
+        width: 50%;
+        background-color: #ffffff;
+        position: relative;
+    }
+
+    .primary-video-wrapper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .primary-text-wrapper {
+        width: 50%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        text-align: left;
+        padding: 20px;
+        color: black;
+    }
+
+    .primary-main-head p {
+        font-weight: 600;
+        font-size: 20px;
+        color: black;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: black;
+      background-color:white;
+    }
+
+    .main-slide-button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        /* margin-bottom: 30px; */
+    }
+
+    /* Common styles for buttons */
+    .btn-slide-one, .btn-slide-two, .btn-slide-three {
+        width: 100px;
+        height: 100px;
+        background-color: beige;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.3s ease;
+        /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+    }
+
+    /* Hover effect */
+    .btn-slide-one:hover,
+    .btn-slide-two:hover,
+    .btn-slide-three:hover {
+        background-color: lightblue;
+        transform: scale(1.1); /* Slight zoom effect */
+    }
+
+    /* Click effect */
+    .btn-slide-one:active,
+    .btn-slide-two:active,
+    .btn-slide-three:active {
+        transform: scale(0.95); 
+    }
+
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: #000; /* Change color as needed */
+        opacity: 0.6; /* Slight transparency */
+        transition: background 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: black; 
+        opacity: 1;
+    }
+
+    .swiper-pagination {
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .swiper-container {
+        position: relative;
+    }
+
+    .swiper-pagination {
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    @media screen and (max-width: 768px) {
+        .main-slide-button-wrapper {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .t4s-section-inner.t4s_nt_se_template--18690231402719__top_heading_FjkhTJ.t4s_nt_se_template--18690231402719__top_heading_FjkhTJ.t4s-container-wrap {
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+
+        .primary-content-wrapper {
+            flex-direction: column;
+            height: auto; /* Adjust height for the column layout */
+        }
+
+        .primary-main-head p {
+            font-weight: 600;
+            font-size: 20px;
+            color: black;
+            margin-bottom: 0px;
+        }
+
+        .primary-video-wrapper, 
+        .primary-text-wrapper {
+            width: 100%; /* Make each section take full width */
+        }
+
+        .primary-text-wrapper {
+            text-align: justify; /* Optional: Center text alignment for better mobile presentation */
+            padding: 10px; /* Reduce padding for smaller screens */
+            align-items: center;
+        }
+
+        .swiper-button-next {
+            /* display: none; */
+        }
+
+        .swiper-button-prev {
+            /* display: none; */
+        }
+
+        .swiper-container {
+            width: 100%; /* Ensure it fits exactly within the viewport */
+            height: 100%;
+            /* overflow: hidden;  */
+        }
+    }
+</style>
+
+<div class="main-slide-button-wrapper">
+    {% for block in section.blocks %}
+    <div class="btn-slide-one" onclick="goToSlide('{{ section.id }}', {{ block.settings.numeric_input }})">
+        <img src="{{ block.settings.imgtext | image_url }}" />
+    </div>
+    {% endfor %}
+</div>
+
+<div class="swiper-container" id="swiper-{{ section.id }}" data-section-id="{{ section.id }}">
+    <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+        <div class="swiper-slide">
+            <div class="primary-content-wrapper">
+                <div class="primary-video-wrapper">
+                    <video autoplay loop muted>
+                        <source src="{{ block.settings.video_input | video_tag }}
+                    </video>
+                </div>
+                <div class="primary-text-wrapper">
+                    <div class="primary-main-head">
+                        <p>{{ block.settings.main_head_text }}</p>
+                    </div>
+                    <p>{{ block.settings.main_subhead_text }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-button-next" id="next-{{ section.id }}"></div>
+    <div class="swiper-button-prev" id="prev-{{ section.id }}"></div>
+</div>
+ 
+
+
+<!-- Swiper.js Script -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    // Declare swiperInstances globally
+    if (!window.swiperInstances) {
+        window.swiperInstances = {};
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const swiperContainers = document.querySelectorAll(".swiper-container");
+
+        swiperContainers.forEach((container) => {
+            const sectionId = container.getAttribute("data-section-id");
+            // Only initialize swiper if it's not already initialized
+            if (!window.swiperInstances[sectionId]) {
+                const swiper = new Swiper(`#swiper-${sectionId}`, {
+                    loop: true,
+                    navigation: {
+                        nextEl: `#next-${sectionId}`,
+                        prevEl: `#prev-${sectionId}`,
+                    },
+                    pagination: {
+                        el: `#pagination-${sectionId}`,
+                        clickable: true,
+                    },
+                });
+
+                // Store the Swiper instance in the global swiperInstances object
+                window.swiperInstances[sectionId] = swiper;
+            }
+        });
+    });
+
+    // The goToSlide function
+    function goToSlide(sectionId, index) {
+        console.log(`Going to slide ${index} for section ${sectionId}`);
+
+        // Check if the swiper instance for the section exists
+        const swiperInstance = window.swiperInstances[sectionId];
+        if (swiperInstance) {
+            // Ensure swiper is properly initialized
+            const slidesCount = swiperInstance.slides.length;
+            console.log("Slides count:", slidesCount);
+
+            // Ensure the index is within the valid range
+            if (index >= 0 && index < slidesCount) {
+                // Add a slight delay to ensure smooth navigation
+                setTimeout(function() {
+                    swiperInstance.slideTo(index);
+                }, 50); // Adjust delay if needed
+            } else {
+                console.error("Invalid slide index:", index);
+            }
+        } else {
+            console.error(`Swiper instance not found for section: ${sectionId}`);
+        }
+    }
+</script>
+
+{% schema %}
+{
+  "name": "Process Video Slider",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Process Icons",
+      "type": "focus_pointer",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imgtext",
+          "label": "Please select the image"
+        },
+        {
+          "type": "number",
+          "id": "numeric_input",
+          "label": "Please enter a number",
+          "default": 0
+        },
+        {
+          "type": "video",
+          "id": "video_input",
+          "label": "Please select a video"
+        },
+        {
+          "type": "text",
+          "id": "main_head_text",
+          "label": "Write the Main Heading Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_subhead_text",
+          "label": "Write the subheading here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process Video Slider"
+    }
+  ]
+}
+{% endschema %}
