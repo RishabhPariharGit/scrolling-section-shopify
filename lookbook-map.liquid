@@ -1,14 +1,15 @@
-<style>
-        .main-lookbook-wrapper {
+<style> 
+.main-lookbook-wrapper {
             width: 100%;
-            height: 100vh;
+            height: unset;
             background-color: rgb(255, 255, 255);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+          gap:15px;
         }
-
+  
         .main-lookbook-img-wrapper {
             width: 50%;
             height: 80vh;
@@ -19,7 +20,7 @@
         }
 
         .main-lookbook-img {
-            position: relative; /* Set relative positioning */
+            position: relative;
         }
 
         .main-lookbook-img img {
@@ -28,11 +29,7 @@
             height: auto; 
         }
 
-        .focus-point-one,
-        .focus-point-two,
-        .focus-point-three,
-        .focus-point-four,
-        .focus-point-five {
+        .focus-point-one {
             position: absolute;
             border-radius: 50%;
             width: 25px;
@@ -44,9 +41,48 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; 
         }
 
+.tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #555;
+  color: #fff;
+  font-size:12px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext p{
+  margin-bottom:0px !important;
+  font-weight:500 !important;
+}
+  
+
+  .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+  .focus-point-one:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+  
 
 {% for block in section.blocks %}
         .focus-point-one.dot-point-{{forloop.index}} {
@@ -56,40 +92,8 @@
 {% endfor %}  
 
 
-        .focus-point-one:hover,
-        .focus-point-two:hover,
-        .focus-point-three:hover,
-        .focus-point-four:hover,
-        .focus-point-five:hover {
-            background-color: rgb(187, 186, 186);
-            border: 2px solid white;
-            width: 35px;
-            height: 35px;
-            z-index: 20; 
-            color: white; 
-          
-        }
-
-        .focus-point-one span,
-        .focus-point-two span,
-        .focus-point-three span,
-        .focus-point-four span,
-        .focus-point-five span {
-            display: none; 
-            font-size: 14px; 
-        }
-
-        .focus-point-one:hover span,
-        .focus-point-two:hover span,
-        .focus-point-three:hover span,
-        .focus-point-four:hover span,
-        .focus-point-five:hover span {
-            display: block; 
-        }
-
-
         .main-description-main-wrapper{
-            width:50%;
+            width:fit-content;
             height: 100vh;
             background-color: rgb(255, 255, 255);
             display: flex;
@@ -113,6 +117,10 @@
         #description-text{
             text-align: center;
             padding: 5px 50px;
+        }
+
+          #description-text img{
+           width:200px;
         }
 
   #description-text p, h1, h2, h3, h4, h5, h6{
@@ -143,31 +151,19 @@
                 height: auto; /* Adjust height automatically */
             }
 
-            .focus-point-one,
-            .focus-point-two,
-            .focus-point-three,
-            .focus-point-four,
-            .focus-point-five {
+            .focus-point-one {
                 width: 15px; /* Smaller width for smaller screens */
                 height: 15px; /* Smaller height for smaller screens */
             }
 
-            .focus-point-one:hover,
-            .focus-point-two:hover,
-            .focus-point-three:hover,
-            .focus-point-four:hover,
-            .focus-point-five:hover {
+            .focus-point-one:hover {
                 width: 22px; /* Adjusted scale for smaller screens */
                 height: 22px; /* Adjusted scale for smaller screens */
                 border:1px solid white;
                 font-weight: 600;
             }
 
-            .focus-point-one span,
-            .focus-point-two span,
-            .focus-point-three span,
-            .focus-point-four span,
-            .focus-point-five span {
+            .focus-point-one span {
                 font-size: 10px; /* Adjust font size for smaller screens */
             }
         }
@@ -176,15 +172,28 @@
     <div class="main-lookbook-wrapper">
         <div class="main-lookbook-img-wrapper">
             <div class="main-lookbook-img">
-                <img src="https://cdn.shopify.com/s/files/1/0729/3789/8207/files/India_region_blue_1_Converted_-01_1.png?v=1735802506" />
-                {% for block in section.blocks %}
-                <div class="focus-point-one dot-point-{{ forloop.index }}" onclick="updateDescription('<p>{{ block.settings.source-state-name }}</p><p>{{ block.settings.source-state-desc }}</p>')">+</div>
-                  {% endfor %}
+                <img src="{{ section.settings.main_map_img | image_url }}" width="auto" height="auto" alt="Description Icon" />
+{% for block in section.blocks %}
+ <div 
+  class="focus-point-one dot-point-{{ forloop.index }}" 
+  onclick="handleFocusPointClick('{{ block.settings.state-description-icon | image_url }}', '{{ block.settings.source-state-name }}', '{{ block.settings.source-state-desc }}')"
+>
+  +
+  <span class="tooltiptext">{{ block.settings.source-state-name-tooltip }}</span>
+</div>
+
+
+{% endfor %}
+
+
             </div>
         </div>
         <div class="main-description-main-wrapper">
             <div class="main-description-secondary-wrapper">
-                <div id="description-text"><p>{{ section.settings.main_head_text }}</p>
+                <div id="description-text">
+                <img src="{{ section.settings.main-description-icon | image_url }}" width="200" height="200" alt="Description Icon" />
+
+                  <p>{{ section.settings.main_head_text }}</p>
                   <p>{{ section.settings.main_description_text }}</p>
                 </div>
             </div>
@@ -197,6 +206,16 @@
             const descriptionElement = document.getElementById('description-text');
             descriptionElement.innerHTML = htmlContent; // Use innerHTML to insert HTML
         }
+
+      function handleFocusPointClick(iconUrl, stateName, stateDesc) {
+  const descriptionHtml = `
+    <img src="${iconUrl}" width="200" height="200" alt="Description Icon" />
+    <p>${stateName}</p>
+    <p>${stateDesc}</p>
+  `;
+  updateDescription(descriptionHtml);
+}
+
     </script>
 
 {% schema %}
@@ -204,6 +223,18 @@
   "name": "Our Sourcing",
   "tag": "section",
   "settings": [
+
+    {
+      "type": "image_picker",
+      "id": "main_map_img",
+      "label": "state-icon"
+    },
+    
+    {
+      "type": "image_picker",
+      "id": "main-description-icon",
+      "label": "main-icon"
+    },
     {
       "type": "richtext",
       "id": "main_head_text",
@@ -230,7 +261,13 @@
     {
      "name": "states",
       "type": "focus_pointer",
-      "settings": [      
+      "settings": [  
+
+           {
+      "type": "image_picker",
+      "id": "state-description-icon",
+      "label": "state-icon"
+    },
 
  {
       "type": "richtext",
@@ -242,6 +279,12 @@
       "type": "richtext",
       "id": "source-state-desc",
       "label": "Write the state description here"
+    },
+
+         {
+      "type": "richtext",
+      "id": "source-state-name-tooltip",
+      "label": "name for tooltip"
     },
         
     {
