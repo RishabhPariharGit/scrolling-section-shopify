@@ -1,0 +1,356 @@
+ <style>
+
+   .nutrient-section-main-wrapper {
+  background-color: #edf1f5;
+  margin: {{section.settings.section-main-margin}}px;  
+  padding:{{section.settings.section-main-padding}}px; 
+  text-align: center;
+     border-radius:20px;
+}
+
+.nutrient-section-main-wrapper h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: black;
+padding-bottom:30px;
+  font-weight:800;
+}
+
+.content-container-main-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.feature-cards-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 300px;
+}
+
+.feature-card-secondary-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.feature-card-secondary-wrapper h3 {
+text-align: left;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+  font-weight:800;
+}
+
+.feature-card-secondary-wrapper p {
+text-align: left;
+font-size: 16px;
+color: black;
+margin:0px !important;  
+}
+
+.image-container-main-wrapper-cstm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.image-container-main-wrapper-cstm img {
+  width: 450px;
+  border-radius: 8px;
+}
+
+
+@media (max-width: 1300px) {
+
+  .nutrient-section-main-wrapper {
+  background-color: #edf1f5;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.nutrient-section-main-wrapper h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #000;
+}
+
+.content-container-main-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.feature-cards-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 220px;
+}
+
+.feature-card-secondary-wrapper {
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 30px;
+}
+
+.feature-card-secondary-wrapper h3 {
+text-align: left;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.feature-card-secondary-wrapper p {
+text-align: left;
+font-size: 13px;
+color: #333;
+margin:0px !important;
+}
+
+.image-container-main-wrapper-cstm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.image-container-main-wrapper-cstm img {
+  width: auto;
+  border-radius: 7px;
+}
+}
+
+@media (max-width: 1150px) {
+
+  .nutrient-section-main-wrapper {
+  background-color: #edf1f5;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.nutrient-section-main-wrapper h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #000;
+}
+
+.content-container-main-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.feature-cards-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-card-secondary-wrapper {
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 30px;
+}
+
+.feature-card-secondary-wrapper h3 {
+  text-align: left;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.feature-card-secondary-wrapper p {
+text-align: left;
+font-size: 13px;
+color: #333;
+letter-spacing: 0.9px;
+margin:0px !important;
+}
+
+.image-container-main-wrapper-cstm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.image-container-main-wrapper-cstm img {
+  width: 300px;
+  border-radius: 7px;
+}
+}   
+   
+@media (max-width: 768px) {
+
+.nutrient-section-main-wrapper {
+  background-color: #edf1f5;
+  margin: {{section.settings.section-main-margin-mobile}}px;  
+  padding:{{section.settings.section-main-padding-mobile}}px; 
+  text-align: center;
+     border-radius:20px;
+}
+  
+  .content-container-main-wrapper {
+    flex-direction: column;
+  }
+
+  .image-container-main-wrapper-cstm {
+    order: -1; /* Moves the image container to come first in the flow */
+    margin-bottom: 20px;
+  }
+
+  .feature-cards-main-container {
+    max-width: 100%;
+  }
+
+  .image-container-main-wrapper-cstm img {
+    width: 200px;
+  }
+
+}
+
+
+ </style>
+
+   <section class="nutrient-section-main-wrapper">
+    <h1>With everything you need.</h1>
+    <div class="content-container-main-wrapper">
+      <div class="feature-cards-main-container left">
+        <div class="feature-card-secondary-wrapper">
+          <h3>Complete nutrient profile</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+        <div class="feature-card-secondary-wrapper">
+          <h3>High in protein</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+        <div class="feature-card-secondary-wrapper">
+          <h3>Low glycemic index</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+      </div>
+      <div class="image-container-main-wrapper-cstm">
+        <img src="https://uk.yfood.com/cdn/shop/files/educational_RTD_Happy_Banna_USP_Review_72dpi.webp?v=1726647854&width=535" alt="Product Image">
+      </div>
+      <div class="feature-cards-main-container right">
+        <div class="feature-card-secondary-wrapper">
+          <h3>26 vitamins & minerals</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+        <div class="feature-card-secondary-wrapper">
+          <h3>High quality</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+        <div class="feature-card-secondary-wrapper">
+          <h3>No added sugar</h3>
+          <p>According to the latest nutritional studies: Good balance of carbohydrates, protein and fibre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% schema %}
+  {
+    "name": "Image with Points View 1",
+    "settings": [
+
+      {
+      "type": "range",
+      "id": "section-main-margin",
+      "min": 2,
+      "max": 100,
+      "label": "Margin",
+      "default": 20
+    },
+ {
+      "type": "range",
+      "id": "section-main-padding",
+      "min": 2,
+      "max": 100,
+      "label": "Padding",
+      "default": 20
+    },
+
+              {
+      "type": "range",
+      "id": "section-main-margin-mobile",
+      "min": 1,
+      "max": 100,
+      "label": "Margin Mobile",
+      "default": 1
+    },
+ {
+      "type": "range",
+      "id": "section-main-padding-mobile",
+      "min": 1,
+      "max": 100,
+      "label": "Padding Mobile",
+      "default": 1
+}  
+    ],
+      "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "head_text",
+          "label": "Heading Text"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subheading"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "city_name",
+          "label": "City Name",
+        },
+        {
+          "type": "text",
+          "id": "full_address",
+          "label": "Fll Address",
+          "default": "New York, USA"
+        },
+        {
+          "type": "text",
+          "id": "timings",
+          "label": "Timings",
+          "default": "Monday till Saturday 9am – 9pm"
+        },
+        {
+          "type": "text",
+          "id": "location_coordinates",
+          "label": "Location Coordinates",
+          "default": "40.712776, -74.005974"
+        }
+      ]
+    }
+  ],
+      "presets": [
+    {
+      "name": "Image with Points View 1"
+    }
+  ]
+  }
+{% endschema %}
