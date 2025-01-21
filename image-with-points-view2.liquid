@@ -1,0 +1,237 @@
+<style>
+.anytime-anywhere-section-main-wrapper {
+  background-color: #edf1f5;
+  margin:{{ section.settings.section-main-margin }}px;
+  border-radius:20px;
+}
+
+.main-content-wrapper-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin:  auto;
+  padding:{{section.settings.section-main-padding}}px;
+}
+
+
+.main-image-container-main {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 20px;
+}
+
+.main-image-container-main img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+
+.main-text-container-main {
+  flex: 2;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.main-text-container-main h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight:800;
+}
+
+.main-text-container-main p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: black;
+  line-height: 25px;
+}
+
+.main-features-container-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature-main-container {
+  flex: 1;
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.feature-main-container h4 {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  font-weight:800;
+}
+
+.feature-main-container p {
+  font-size: 16px;
+  color: black;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .anytime-anywhere-section-main-wrapper {
+  background-color: #edf1f5;
+  margin:{{ section.settings.section-main-margin-mobile }}px;
+  border-radius:20px;
+}
+
+.main-content-wrapper-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin:  auto;
+  padding:{{section.settings.section-main-padding-mobile}}px;
+}
+  
+  .main-content-wrapper-main {
+    flex-direction: column;
+  }
+
+  .main-image-container-main {
+    margin-bottom: 20px;
+  }
+
+  .main-features-container-main {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+ 
+ <section class="anytime-anywhere-section-main-wrapper">
+        <div class="main-content-wrapper-main">
+          <!-- Left Image Section -->
+          <div class="main-image-container-main">
+            <img src="https://uk.yfood.com/cdn/shop/files/yfood-home-section-3-busylifestyle.webp?v=1724148764&width=750" alt="Woman holding a drink" />
+          </div>
+          <!-- Right Content Section -->
+          <div class="main-text-container-main">
+            <h2>Anytime, anywhere.</h2>
+            <p>
+          No time to prepare a freshly cooked meal? No problem! Our ready-to-drink meals are super convenient, 
+              packed with essential nutrients, high in protein, and delicious.
+            </p>
+            <div class="main-features-container-main">
+              <div class="feature-main-container">
+                <h4>Simple & practical</h4>
+                <p>Our drinks keep you full for 3-5 hours and are perfect for on-the-go, at work, or at home.</p>
+              </div>
+              <div class="feature-main-container">
+                <h4>Nutritious & balanced</h4>
+                <p>Our drinks keep you full for 3-5 hours and are perfect for on-the-go, at work, or at home.</p>
+              </div>
+              <div class="feature-main-container">
+                <h4>Tasty & diverse</h4>
+                <p>Our drinks keep you full for 3-5 hours and are perfect for on-the-go, at work, or at home.</p>
+              </div>
+              <div class="feature-main-container">
+                <h4>Healthy & digestible</h4>
+                <p>Our drinks offer a balanced ratio of essential nutrients, and they are lactose and gluten-free for easy digestion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% schema %}
+  {
+    "name": "Image with Points View 2",
+    "settings": [
+  {
+      "type": "range",
+      "id": "section-main-margin",
+      "min": 2,
+      "max": 100,
+      "label": "Margin",
+      "default": 20
+    },
+ {
+      "type": "range",
+      "id": "section-main-padding",
+      "min": 2,
+      "max": 100,
+      "label": "Padding",
+      "default": 20
+    },
+
+        {
+      "type": "range",
+      "id": "section-main-margin-mobile",
+      "min": 1,
+      "max": 100,
+      "label": "Margin Mobile",
+      "default": 1
+    },
+ {
+      "type": "range",
+      "id": "section-main-padding-mobile",
+      "min": 1,
+      "max": 100,
+      "label": "Padding Mobile",
+      "default": 1
+    }
+      
+    ],
+      "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "head_text",
+          "label": "Heading Text"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subheading"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "name": "Location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "city_name",
+          "label": "City Name",
+        },
+        {
+          "type": "text",
+          "id": "full_address",
+          "label": "Fll Address",
+          "default": "New York, USA"
+        },
+        {
+          "type": "text",
+          "id": "timings",
+          "label": "Timings",
+          "default": "Monday till Saturday 9am – 9pm"
+        },
+        {
+          "type": "text",
+          "id": "location_coordinates",
+          "label": "Location Coordinates",
+          "default": "40.712776, -74.005974"
+        }
+      ]
+    }
+  ],
+      "presets": [
+    {
+      "name": "Image with Points View 2"
+    }
+  ]
+  }
+{% endschema %}
