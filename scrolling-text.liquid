@@ -1,0 +1,88 @@
+   <style>
+
+
+.marquee-main-container {
+  background-color:white;
+  overflow: hidden;
+}
+
+.main-marquee-cont {
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  gap:5px;
+  background-color:black;
+  margin-bottom:16px;
+}
+
+.main-marquee-cont ul {
+  list-style: none;
+  flex-shrink: 0;
+  min-width: 0%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  animation: mainmarquee 4s linear infinite;
+  padding: 0px 20px;
+}
+
+
+.main-marquee-text {
+color:white;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  font-size: 14px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+     
+@keyframes mainmarquee {
+  to {
+    transform: translateX(calc(-100% - 3px));
+  }
+}
+    </style>
+
+
+<div class="marquee-main-container">
+        <div class="main-marquee-cont">
+          {% for block in section.blocks %}
+          <ul>
+            <li><span class="main-marquee-text">{{ block.settings.main_head_text }}</span></li>
+          </ul>
+            {% endfor %}
+        </div>
+      </div>
+
+
+{% schema %}
+ {
+  "name": "Scrolling Text Small",
+  "tag": "section",
+  "settings": [
+   
+],
+
+     "blocks": [
+       {
+      "name": "Add Text",
+      "type": "focus_pointer",
+      "settings": [
+         {
+      "type": "text",
+      "id": "main_head_text",
+      "label": "Write the Main Heading Here"
+    }
+      ]
+    }
+     ],
+
+  "presets": [
+    {
+      "name": "Scrolling Text Small"
+    }
+  ]
+}
+{% endschema %}
