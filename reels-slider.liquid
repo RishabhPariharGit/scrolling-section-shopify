@@ -1,0 +1,154 @@
+{% comment %}
+---------------------------------------------------------------
+  Manual Product Slider (Splide.js)
+  - Add up to 20 products manually
+  - Each product can have its own custom image
+  - Responsive, autoplay slider
+---------------------------------------------------------------
+{% endcomment %}
+
+<section id="splide-slider-{{ section.id }}" class="splide manual-product-slider">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for block in section.blocks %}
+        {% if block.settings.product != blank %}
+          <li class="splide__slide">
+            <a href="{{ all_products[block.settings.product].url }}" class="manual-slider-link">
+              {% if block.settings.custom_image != blank %}
+                <img 
+                  src="{{ block.settings.custom_image | img_url: '600x600' }}" 
+                  alt="{{ all_products[block.settings.product].title | escape }}" 
+                  loading="lazy"
+                >
+              {% else %}
+                <img 
+                  src="{{ all_products[block.settings.product].featured_image | img_url: '600x600' }}" 
+                  alt="{{ all_products[block.settings.product].title | escape }}" 
+                  loading="lazy"
+                >
+              {% endif %}
+                  <div class="main-heading-product-rp">
+              {{ all_products[block.settings.product].title }}
+            </div>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<style>
+  #splide-slider-{{ section.id }} {
+    margin: 40px auto;
+    max-width: 1200px;
+  }
+
+  #splide-slider-{{ section.id }} .splide__slide {
+    text-align: center;
+  }
+
+  #splide-slider-{{ section.id }} .splide__slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  {% comment %} #splide-slider-{{ section.id }} .splide__slide img:hover {
+    transform: scale(1.03);
+  } {% endcomment %}
+
+  .main-heading-product-rp {
+    text-align: center;
+    font-weight: 600;
+    padding-top: 10px;
+    font-size: 1rem;
+  }
+</style>
+
+<link 
+  rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+/>
+<script 
+  src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" 
+  defer>
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#splide-slider-{{ section.id }}', {
+      type      : 'loop',
+      perPage   : {{ section.settings.products_per_row }},
+      perMove   : 1,
+      gap       : '1rem',
+      autoplay  : {{ section.settings.autoplay }},
+      interval  : 3000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      breakpoints: {
+        1024: { perPage: {{ section.settings.products_per_row_tablet }} },
+        768:  { perPage: {{ section.settings.products_per_row_mobile }} },
+      },
+    }).mount();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Manual Product Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "products_per_row",
+      "label": "Products per row (desktop)",
+      "default": 4
+    },
+    {
+      "type": "number",
+      "id": "products_per_row_tablet",
+      "label": "Products per row (tablet)",
+      "default": 2
+    },
+    {
+      "type": "number",
+      "id": "products_per_row_mobile",
+      "label": "Products per row (mobile)",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Manual Product Slider",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
