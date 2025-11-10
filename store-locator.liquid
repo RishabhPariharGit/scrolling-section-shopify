@@ -1,0 +1,782 @@
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css"
+  />
+
+<style>
+prp.phone-icon-rp {
+    display: flex;
+    gap: 20px;
+    align-items:center;
+}
+          /* Existing styles remain unchanged */
+          .main-map-section-main-wrapper {
+              background-color: white;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+          }
+
+          .main-state-name-rp {
+    font-size: 28px;
+    font-weight: 600;
+    color:rgb(20, 20, 20);
+    text-align: left;
+    width: 100%;
+    padding-left: 45px;
+    padding-bottom:30px;
+    padding-top:30px;
+}
+
+          .main-map-card-wrapper-main-wrapper {
+              background-color: white;
+              display: grid;
+              grid-template-columns:auto auto auto auto;
+              padding:15px 45px;
+              gap: 20px;
+              width: 100%;
+              margin-bottom:30px;
+          }
+
+          @media screen and (min-width: 920px) and (max-width: 1150px) {
+   .main-map-card-wrapper-main-wrapper {
+   grid-template-columns:auto auto auto;
+  }
+}
+
+          @media screen and (min-width: 600px) and (max-width: 919px) {
+   .main-map-card-wrapper-main-wrapper {
+   grid-template-columns:auto auto;
+  }
+}
+
+  @media screen and (min-width: 300px) and (max-width: 599px) {
+   .main-map-card-wrapper-main-wrapper {
+   grid-template-columns:auto;
+  }
+
+  .main-map-search-bar{
+  margin-bottom:0px !important;
+  padding: 20px 10px !important;
+  }
+
+}
+
+
+.main-map-search-bar .ui.search.dropdown.selection {
+    display: none;
+}
+
+
+
+          .main-map-search-bar {
+              top: 0;
+              background-color: white;
+              width: 100%;
+              max-width: 500px;
+              padding: 10px 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 45px;
+              margin-top: 20px;
+              gap:2px;
+          }
+
+          .main-map-search-bar input[type="text"] {
+              width: 100%;
+              padding: 9.96px;
+              font-size: 14px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              outline: none;
+          }
+
+          .mn-card-wrapper {
+              background-color: #eaf0e6;
+              color: #f7f7f7;
+              {% comment %} width: 300px; {% endcomment %}
+            height:350px;
+              border-radius: 20px;
+              padding: 16px;
+              display: none; /* Initially hidden */
+          }
+
+          .mn-card-wrapper.delhi{
+          width:300px;
+        }
+
+        .mn-card-wrapper.pondicherry{
+          width:300px;
+        }
+        .mn-card-wrapper.indore{
+          width:300px;
+        }
+
+          .mn-card-wrapper h2 {
+              margin: 0 0 12px;
+              font-size: 19px;
+              color: black;
+            font-weight:600;
+          }
+
+          .mn-card-wrapper p {
+              margin: 0 0 8px;
+              line-height: 32px;
+              color: black;
+            font-size:16px;
+            font-weight:500;
+          }
+
+          .mn-card-wrapper .hours {
+              margin: 16px 0;
+          }
+
+    .address-main-clss svg.bi.bi-house, .hours svg.bi.bi-telephone {
+      margin-top: 6px;
+  }
+
+     .phone-icon{
+       display:flex;
+       align-items:flex-start;
+       gap:10px;
+     }
+
+     .address-main-clss{
+        /* display:flex; */
+       align-items:flex-start;
+       gap:10px;
+     }
+
+     .hours{
+        display:flex;
+       align-items:flex-start;
+       gap:10px;
+     }
+          .mn-button-container {
+              display: flex;
+              align-items:center;
+          }
+
+          .location-srch-button {
+              color: black;
+              padding-left:15px;
+            text-decoration:underline;
+            font-weight:600;
+            font-size:17px;
+          }
+
+          .no-results-main-wrapper {
+              display: none;
+              color: red;
+              font-weight: bold;
+              margin-top: 20px;
+          }
+
+          .view-more-btn {
+              background-color: #b7d0b0;
+              color: black;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 8px;
+              font-size: 16px;
+              font-weight: bold;
+              cursor: pointer;
+              margin-top: 20px;
+          }
+
+          .view-more-btn:hover {
+              background-color: #b7d0b0;
+          }
+
+  svg.bi.bi-geo-alt-fill {
+  color:black;
+    margin-top:6px;
+  }
+     .main-address-wrapper {
+      {% comment %} display: flex; {% endcomment %}
+      gap: 10px;
+  }
+     svg.bi.bi-telephone {
+      margin-top: 6px;
+  }
+</style>
+
+<div class="main-map-section-main-wrapper">
+  <div class="main-map-search-bar">
+    <input type="text" id="searchInput" placeholder="Search City, Area, Pincode...">
+
+
+
+  <select class="ui search dropdown">
+  <option value="">Select State</option>
+  <option value="andaman and nicobar islands">Andaman and Nicobar Islands</option>
+  <option value="andhra pradesh">Andhra Pradesh</option>
+  <option value="arunachal pradesh">Arunachal Pradesh</option>
+  <option value="assam">Assam</option>
+  <option value="bihar">Bihar</option>
+  <option value="chandigarh">Chandigarh</option>
+  <option value="chhattisgarh">Chhattisgarh</option>
+  <option value="dadra and nagar haveli and daman and diu">Dadra and Nagar Haveli and Daman and Diu</option>
+  <option value="delhi">Delhi</option>
+  <option value="goa">Goa</option>
+  <option value="gujarat">Gujarat</option>
+  <option value="haryana">Haryana</option>
+  <option value="himachal pradesh">Himachal Pradesh</option>
+  <option value="jammu and kashmir">Jammu and Kashmir</option>
+  <option value="jharkhand">Jharkhand</option>
+  <option value="karnataka">Karnataka</option>
+  <option value="kerala">Kerala</option>
+  <option value="ladakh">Ladakh</option>
+  <option value="lakshadweep">Lakshadweep</option>
+  <option value="madhya pradesh">Madhya Pradesh</option>
+  <option value="maharashtra">Maharashtra</option>
+  <option value="manipur">Manipur</option>
+  <option value="meghalaya">Meghalaya</option>
+  <option value="mizoram">Mizoram</option>
+  <option value="nagaland">Nagaland</option>
+  <option value="odisha">Odisha</option>
+  <option value="puducherry">Puducherry</option>
+  <option value="punjab">Punjab</option>
+  <option value="rajasthan">Rajasthan</option>
+  <option value="sikkim">Sikkim</option>
+  <option value="tamil nadu">Tamil Nadu</option>
+  <option value="telangana">Telangana</option>
+  <option value="tripura">Tripura</option>
+  <option value="uttar pradesh">Uttar Pradesh</option>
+  <option value="uttarakhand">Uttarakhand</option>
+  <option value="west bengal">West Bengal</option>
+</select>
+
+
+
+  </div>
+
+
+
+ <div class="main-state-name-rp state_name_rpp"> Mumbai</div>
+
+
+  <div class="main-map-card-wrapper-main-wrapper" id="locationsContainer">
+    <div class="no-results-main-wrapper" id="noResultsMessage">We are not available here!</div>
+
+    <!-- Location Cards (initially 6 shown) -->
+    {% for block in section.blocks %}
+         {% if block.settings.main_head_text_first != blank %}
+    <div class="mn-card-wrapper" data-state="{{ block.settings.state_name | downcase }}">
+      <h2>{{block.settings.main_head_text_first}}</h2>
+
+      <div class="main-address-wrapper">
+        <p class="address-main-clss">
+          {{block.settings.main_head_text_desc}}
+        </p>
+      </div>
+
+      {% if block.settings.main_head_phone_number != blank %}
+<div class="main-wrapper-main-rp">
+      <prp class="phone-icon-rp">
+           <p class="phone-icon">
+       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-browser-chrome" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg>
+                {{block.settings.main_head_phone_number}}
+      </p>
+      </prp>
+</div>
+{% endif %}
+  
+      <div class="mn-button-container">
+              <div class="main-svg-clss">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <a
+          href="{{ block.settings.main_weburl_rp }}"
+          class="location-srch-button"
+          >View On Map</a
+        >
+      </div>
+    </div>
+    {% endif %}
+{% endfor %}
+
+    <!-- View More Button -->
+  </div>
+
+
+ <div class="main-state-name-rp state_name_rpp">Delhi</div>
+
+
+  <div class="main-map-card-wrapper-main-wrapper" id="locationsContainer">
+    <div class="no-results-main-wrapper" id="noResultsMessage">We are not available here!</div>
+
+    <!-- Location Cards (initially 6 shown) -->
+    {% for block in section.blocks %}
+       {% if block.settings.main_head_text_sec != blank %}
+    <div class="mn-card-wrapper delhi" data-state="{{ block.settings.state_name_sec | downcase }}">
+      <h2>{{block.settings.main_head_text_sec}}</h2>
+
+      <div class="main-address-wrapper">
+        <p class="address-main-clss">
+          {{block.settings.main_head_text_desc_sec}}
+        </p>
+      </div>
+
+      {% if block.settings.main_head_phone_number_sec != blank %}
+<div class="main-wrapper-main-rp">
+      <prp class="phone-icon-rp">
+           <p class="phone-icon">
+       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-browser-chrome" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg>
+                {{block.settings.main_head_phone_number_sec}}
+      </p>
+      </prp>
+</div>
+{% endif %}
+      <div class="mn-button-container">
+            <div class="main-svg-clss">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <a
+          href="{{ block.settings.main_weburl_rp_sec }}"
+          class="location-srch-button"
+          >View On Map</a
+        >
+      </div>
+    </div>
+    {% endif %}
+{% endfor %}
+
+    <!-- View More Button -->
+  </div>
+
+ <div class="main-state-name-rp state_name_rpp">Pondicherry</div>
+
+<div class="main-map-card-wrapper-main-wrapper" id="locationsContainer">
+    <div class="no-results-main-wrapper" id="noResultsMessage">We are not available here!</div>
+
+    <!-- Location Cards (initially 6 shown) -->
+    {% for block in section.blocks %}
+       {% if block.settings.main_head_text_third != blank %}
+    <div class="mn-card-wrapper pondicherry" data-state="{{ block.settings.state_name_third | downcase }}">
+      <h2>{{block.settings.main_head_text_third}}</h2>
+
+      <div class="main-address-wrapper">
+        <p class="address-main-clss">
+          {{block.settings.main_head_text_desc_third}}
+        </p>
+      </div>
+
+      {% if block.settings.main_head_phone_number_third != blank %}
+<div class="main-wrapper-main-rp">
+      <prp class="phone-icon-rp">
+           <p class="phone-icon">
+       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-browser-chrome" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg>
+                {{block.settings.main_head_phone_number_third}}
+      </p>
+      </prp>
+</div>
+{% endif %}
+      <div class="mn-button-container">
+             <div class="main-svg-clss">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <a
+          href="{{ block.settings.main_weburl_rp_third }}"
+          class="location-srch-button"
+          >View On Map</a
+        >
+      </div>
+    </div>
+    {% endif %}
+{% endfor %}
+
+    <!-- View More Button -->
+  </div>
+
+  <div class="main-state-name-rp state_name_rpp">Indore</div>
+
+  <div class="main-map-card-wrapper-main-wrapper" id="locationsContainer">
+    <div class="no-results-main-wrapper" id="noResultsMessage">We are not available here!</div>
+
+    <!-- Location Cards (initially 6 shown) -->
+    {% for block in section.blocks %}
+       {% if block.settings.main_head_text_fourth != blank %}
+    <div class="mn-card-wrapper indore" data-state="{{ block.settings.state_name_fourth | downcase }}">
+      <h2>{{block.settings.main_head_text_fourth}}</h2>
+
+      <div class="main-address-wrapper">
+ 
+        <p class="address-main-clss">
+          {{block.settings.main_head_text_desc_fourth}}
+        </p>
+      </div>
+
+      {% if block.settings.main_head_phone_number_fourth != blank %}
+<div class="main-wrapper-main-rp">
+      <prp class="phone-icon-rp">
+           <p class="phone-icon">
+       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-browser-chrome" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+</svg>
+                {{block.settings.main_head_phone_number_fourth}}
+      </p>
+      </prp>
+</div>
+{% endif %}
+      <div class="mn-button-container">
+               <div class="main-svg-clss">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-geo-alt-fill"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </div>
+        <a
+          href="{{ block.settings.main_weburl_rp_fourth }}"
+          class="location-srch-button"
+          >View On Map</a
+        >
+      </div>
+    </div>
+    {% endif %}
+{% endfor %}
+
+    <!-- View More Button -->
+  </div>
+
+
+
+
+
+
+
+</div>
+  {% comment %} <button class="view-more-btn" id="viewMoreButton">View More</button> {% endcomment %}
+
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const stateDropdown = document.querySelector('.ui.search.dropdown');
+  const cardswrapper = document.querySelectorAll('.main-map-card-wrapper-main-wrapper');
+  const cards = document.querySelectorAll('.mn-card-wrapper');
+  const noResultsMessage = document.getElementById('noResultsMessage');
+  const viewMoreButton = document.getElementById('viewMoreButton');
+  const stateTitles = document.querySelectorAll('.state_name_rpp');
+  let cardsToShow = 100;
+
+  function filterCards() {
+    const query = searchInput.value.toLowerCase();
+    const selectedState = stateDropdown.value.toLowerCase();
+    let hasResults = false;
+
+    // hide/show all state titles depending on search input
+    stateTitles.forEach(title => {
+      title.style.display = query.trim() !== "" ? 'none' : 'block';
+    });
+
+    // show/hide cards
+    cards.forEach(card => {
+      const title = card.innerText.toLowerCase();
+      const cardState = card.getAttribute('data-state');
+      const matchesSearch = title.includes(query);
+      const matchesState = selectedState === "" || cardState === selectedState;
+
+      if (matchesSearch && matchesState) {
+        card.style.display = 'block';
+        hasResults = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // show/hide "no results" message
+    noResultsMessage.style.display = hasResults ? 'none' : 'block';
+    if (viewMoreButton) viewMoreButton.style.display = 'none';
+
+    // ✅ Set padding of wrapper based on whether results are found
+    cardswrapper.forEach(wrapper => {
+      wrapper.style.padding = hasResults ? '0px 45px 0px 45px' : '20px';
+        wrapper.style.margin = hasResults ? '0px 0px 0px 0px' : '30px';  // change 20px to your original padding value
+    });
+  }
+
+  searchInput.addEventListener('input', filterCards);
+  stateDropdown.addEventListener('change', filterCards);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    cards.forEach((card, index) => {
+      card.style.display = index < cardsToShow ? 'block' : 'none';
+    });
+  });
+</script>
+
+
+
+
+
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Semantic UI JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js">
+    console.log("ridhfhshfj");
+  </script>
+
+  <script>
+    // Initialize the Semantic UI dropdown
+    $('.ui.dropdown').dropdown();
+  </script>
+
+{% schema %}
+{
+  "name": "Store Locator",
+  "tag": "section",
+  "settings": [
+
+  
+
+  ],
+  "blocks": [
+{
+      "name": "Location Tabs First",
+      "type": "focus_pointer",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "main_head_text_first",
+          "label": "Write the Main Heading Here"
+        },
+         {
+          "type": "richtext",
+          "id": "main_head_text_desc",
+          "label": "Write the details Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_head_phone_number",
+          "label": "Write the Phone Number Here"
+        },
+        {
+        "type": "url",
+        "id": "main_weburl_rp",
+        "label": "paste the map url here"
+        },
+
+        {
+          "type": "text",
+          "id": "state_name",
+          "label": "Write the State Here"
+        },
+
+      ]
+    },
+
+
+   
+    {
+      "name": "Location Tabs Two",
+      "type": "focus_pointer_second",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "main_head_text_sec",
+          "label": "Write the Main Heading Here"
+        },
+         {
+          "type": "richtext",
+          "id": "main_head_text_desc_sec",
+          "label": "Write the details Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_head_phone_number_sec",
+          "label": "Write the Phone Number Here"
+        },
+        {
+        "type": "url",
+        "id": "main_weburl_rp_sec",
+        "label": "paste the map url here"
+        },
+
+        {
+          "type": "text",
+          "id": "state_name_sec",
+          "label": "Write the State Here"
+        },
+
+      ]
+    },
+
+
+
+{
+      "name": "Location Tabs Three",
+      "type": "focus_pointer_third",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "main_head_text_third",
+          "label": "Write the Main Heading Here"
+        },
+         {
+          "type": "richtext",
+          "id": "main_head_text_desc_third",
+          "label": "Write the details Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_head_phone_number_third",
+          "label": "Write the Phone Number Here"
+        },
+        {
+        "type": "url",
+        "id": "main_weburl_rp_third",
+        "label": "paste the map url here"
+        },
+
+        {
+          "type": "text",
+          "id": "state_name_third",
+          "label": "Write the State Here"
+        },
+
+      ]
+    },
+
+
+
+
+{
+      "name": "Location Tabs Fourth",
+      "type": "focus_pointer_fourth",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "main_head_text_fourth",
+          "label": "Write the Main Heading Here"
+        },
+         {
+          "type": "richtext",
+          "id": "main_head_text_desc_fourth",
+          "label": "Write the details Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_head_phone_number_fourth",
+          "label": "Write the Phone Number Here"
+        },
+        {
+        "type": "url",
+        "id": "main_weburl_rp_fourth",
+        "label": "paste the map url here"
+        },
+
+        {
+          "type": "text",
+          "id": "state_name_fourth",
+          "label": "Write the State Here"
+        },
+
+      ]
+    },
+
+
+{
+      "name": "Location Tabs Fifth",
+      "type": "focus_pointer_fifth",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "main_head_text_first",
+          "label": "Write the Main Heading Here"
+        },
+         {
+          "type": "richtext",
+          "id": "main_head_text_desc",
+          "label": "Write the details Here"
+        },
+        {
+          "type": "richtext",
+          "id": "main_head_phone_number",
+          "label": "Write the Phone Number Here"
+        },
+        {
+        "type": "url",
+        "id": "main_weburl_rp",
+        "label": "paste the map url here"
+        },
+
+        {
+          "type": "text",
+          "id": "state_name",
+          "label": "Write the State Here"
+        },
+
+      ]
+    },
+
+
+    
+    {
+      "name": "State Tabs",
+      "type": "focus_pointer_state",
+      "settings": [
+
+{
+          "type": "text",
+          "id": "state_name_rp",
+          "label": "Write the State Here"
+        },
+      ]
+    }
+    
+
+  ],
+  "presets": [
+    {
+      "name": "Store Locator"
+    }
+  ]
+}
+{% endschema %}
