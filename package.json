@@ -1,11 +1,13 @@
 {
   "name": "scrolling-section-shopify",
   "version": "1.0.0",
+  "type": "module",
   "description": "new file for ci/cd will be made now",
   "main": "index.js",
 "scripts": {
   "build": "echo Building project...",
   "lint": "eslint .",
+  "lint:fix": "eslint . --fix",
   "test": "echo \"Error: no test specified\" && exit 1"
 },
   "keywords": [],
