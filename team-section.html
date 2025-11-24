@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .custom-clss-rp-blow-team-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px;
+}
+
+.custom-clss-rp-blow-team-card {
+  background: #fff;
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.custom-clss-rp-blow-team-card:hover {
+  transform: translateY(-5px);
+}
+
+.custom-clss-rp-blow-team-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Popup Modal */
+#custom-clss-rp-blow-popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 100;
+}
+
+.custom-clss-rp-blow-popup {
+  position: fixed;
+  width: 70%;
+  max-width: 900px;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 12px;
+  display: none;
+  z-index: 101;
+}
+
+.custom-clss-rp-blow-popup-content {
+  display: flex;
+  gap: 30px;
+}
+
+.custom-clss-rp-blow-popup img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+#custom-clss-rp-blow-closePopup {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  .custom-clss-rp-blow-popup-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .custom-clss-rp-blow-popup img {
+    width: 100%;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="custom-clss-rp-blow-team-container">
+  <div class="custom-clss-rp-blow-team-card" data-member="1">
+    <img src="https://via.placeholder.com/300x350" alt="">
+    <h3>Mr. Shantanu Khosla</h3>
+    <p>Non-Executive Vice Chairman</p>
+  </div>
+
+  <div class="custom-clss-rp-blow-team-card" data-member="2">
+    <img src="https://via.placeholder.com/300x350" alt="">
+    <h3>Mr. Promeet Ghosh</h3>
+    <p>Managing Director & CEO</p>
+  </div>
+
+  <div class="custom-clss-rp-blow-team-card" data-member="3">
+    <img src="https://via.placeholder.com/300x350" alt="">
+    <h3>Ms. Smita Anand</h3>
+    <p>Independent Director</p>
+  </div>
+
+  <div class="custom-clss-rp-blow-team-card" data-member="4">
+    <img src="https://via.placeholder.com/300x350" alt="">
+    <h3>Mr. P. R. Ramesh</h3>
+    <p>Independent Director</p>
+  </div>
+</div>
+
+<div id="custom-clss-rp-blow-popup-overlay"></div>
+
+<div class="custom-clss-rp-blow-popup" id="custom-clss-rp-blow-popup">
+  <span id="custom-clss-rp-blow-closePopup">&times;</span>
+
+  <div class="custom-clss-rp-blow-popup-content">
+    <img id="custom-clss-rp-blow-popup-img" src="" alt="">
+    <div>
+      <h2 id="custom-clss-rp-blow-popup-name"></h2>
+      <h4 id="custom-clss-rp-blow-popup-position"></h4>
+      <p id="custom-clss-rp-blow-popup-text"></p>
+    </div>
+  </div>
+</div>
+<script>
+    const members = {
+  1: {
+    name: "Mr. Shantanu Khosla",
+    position: "Non-Executive Vice Chairman",
+    img: "https://via.placeholder.com/450x500",
+    text: "Mr. Shantanu Khosla has served in leadership roles and is known for strategic excellence..."
+  },
+  2: {
+    name: "Mr. Promeet Ghosh",
+    position: "Managing Director & CEO",
+    img: "https://via.placeholder.com/450x500",
+    text: "He has extensive experience in business leadership and operations."
+  },
+  3: {
+    name: "Ms. Smita Anand",
+    position: "Independent Director",
+    img: "https://via.placeholder.com/450x500",
+    text: "Ms. Anand has worked across global organizations and governance roles."
+  },
+  4: {
+    name: "Mr. P. R. Ramesh",
+    position: "Independent Director",
+    img: "https://via.placeholder.com/450x500",
+    text: "Mr. Ramesh brings deep experience in auditing, compliance and corporate governance."
+  }
+};
+
+const cards = document.querySelectorAll(".custom-clss-rp-blow-team-card");
+const popup = document.getElementById("custom-clss-rp-blow-popup");
+const overlay = document.getElementById("custom-clss-rp-blow-popup-overlay");
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    const id = card.getAttribute("data-member");
+    const data = members[id];
+
+    document.getElementById("custom-clss-rp-blow-popup-name").innerText = data.name;
+    document.getElementById("custom-clss-rp-blow-popup-position").innerText = data.position;
+    document.getElementById("custom-clss-rp-blow-popup-img").src = data.img;
+    document.getElementById("custom-clss-rp-blow-popup-text").innerText = data.text;
+
+    overlay.style.display = "block";
+    popup.style.display = "block";
+  });
+});
+
+document.getElementById("custom-clss-rp-blow-closePopup").addEventListener("click", () => {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+});
+
+</script>
+</body>
+</html>
